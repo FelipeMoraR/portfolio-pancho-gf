@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react'
 import viteLogo from '/vite.svg'
 import './App.css'
 
-const URL = import.meta.env.VITE_BACKEND_URL || "/api"
+const URL = import.meta.env.VITE_BACKEND_URL || "http://localhost:5000"
 
 function App() {
   const [data, setData] = useState(null);
   useEffect(() => {
-    fetch(`${URL}`)
+    fetch(`${URL}/api`)
       .then((res) => res.json())
       .then((data) => setData(data.time))
   }, [])

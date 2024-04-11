@@ -6,10 +6,6 @@ import cors from 'cors'
 const PORT = process.env.PORT || 5000;
 const app = express();
 
-app.use(cors({
-    origin: FRONTEND_URL
-}))
-
 const pool = new pg.Pool({
     host: DB_HOST,
     database: DB_DATABASE ,
@@ -17,6 +13,10 @@ const pool = new pg.Pool({
     password: DB_PASSWORD,
     port: DB_PORT 
 })
+
+app.use(cors({
+    origin: FRONTEND_URL
+}))
 
 app.get("/api", async (req, res) => {
     const result = await pool.query('SELECT NOW()')
