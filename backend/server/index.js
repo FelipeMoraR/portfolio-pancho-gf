@@ -1,9 +1,15 @@
 import express from "express";
 import pg from 'pg'
-import { DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD, DB_PORT} from '../config.js'
+import { DB_HOST, DB_DATABASE, DB_USER, DB_PASSWORD, DB_PORT, FRONTEND_URL} from '../config.js'
+import cors from 'cors'
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+app.use(cors({
+    origin: FRONTEND_URL
+}))
+
 const pool = new pg.Pool({
     host: DB_HOST,
     database: DB_DATABASE ,
